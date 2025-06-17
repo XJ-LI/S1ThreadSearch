@@ -21,14 +21,22 @@ keywords = config['keywords']
 
 
 # main loop
-urlList = []
-for i in range(1,page_num+1):
+replyList = []
+
+for i in range(1, page_num + 1):
     url = f'thread-{target_url}-{i}-1.html'
-    urlList.append(url)
+    html = get_posts(login_url, [url], payload)[0]
     
-htmlList = get_posts(login_url, urlList, payload)    
-print("All Required Pages Retrieved.")
-replyList = parse_html_filtered_posts(htmlList, keywords)
+    # Manually insert the current page number
+    replyList.append(i)
+
+    # Filter the page and append relevant posts
+    filtered_replies = parse_html_filtered_posts([html], keywords)
+
+    # Only filtered posts are included; no need to repeat the page number
+    for reply in filtered_replies:
+        if isinstance(reply, str):  # skip the page number if somehow included
+            replyList.append(reply)
+
 print("Filtered, Generating HTML File...")
-# Output
-save_output(replyList, str(target_url)+'-'+str(page_num))
+save_output(replyList, f"{target_url}-{page_num}")
