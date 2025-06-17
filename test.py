@@ -10,7 +10,7 @@ payload = {
 }
 page_num = config['page_number']
 target_url = config['target_url']
-login_url = 'https://bbs.saraba1st.com/2b/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1'
+login_url = 'https://stage1st.com/2b/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1'
 keywords = config['keywords']
 
 

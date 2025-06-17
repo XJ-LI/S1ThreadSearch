@@ -12,7 +12,7 @@ def get_posts(login_url, urlList, payload):
     
     # Request all post pages in target's homepage
     for i in range(len(urlList)):
-        protected_url = "https://bbs.saraba1st.com/2b/" + urlList[i]
+        protected_url = "https://stage1st.com/2b/" + urlList[i]
         # Check if login was successful
         if response.status_code == 200:
             # Now request the protected page
@@ -95,11 +95,11 @@ def save_output(replyList, tid):
 
     # Replace relative_path with full_path
     pattern = r"forum.php\?mod=attachment"
-    replace = "https://bbs.saraba1st.com/2b/forum.php?mod=attachment"
+    replace = "https://stage1st.com/2b/forum.php?mod=attachment"
     output = re.sub(pattern, replace, output)
     # fix user page link
     pattern = r"space-uid-\d+\.html"
-    replace = r"https://bbs.saraba1st.com/2b/\g<0>"
+    replace = r"https://stage1st.com/2b/\g<0>"
     output = re.sub(pattern, replace, output)
 
     # Write the HTML content to a file
